@@ -74,6 +74,18 @@
   .ext-text { font-size: 1rem; color: hsl(var(--muted-foreground)); line-height: 1.7; }
 
 
+  /* Image carousel inside a slide */
+  .img-car { position: relative; width: 100%; height: 100%; background: hsl(var(--card)); }
+  .img-car .img-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .img-car .img-slide.active { opacity: 1; pointer-events: all; }
+  .img-car .img-slide img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 0.5rem; border: 1px solid hsl(var(--border)); }
+  .img-car .img-slide .caption { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid hsl(var(--border)); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.8rem; color: #e4e4e7; white-space: nowrap; }
+  .car-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); border: 1px solid hsl(var(--border)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; transition: all 0.15s; z-index: 2; }
+  .car-btn:hover { background: rgba(124,58,237,0.8); }
+  .car-prev { left: 1rem; }
+  .car-next { right: 1rem; }
+  .car-counter { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); border: 1px solid hsl(var(--border)); border-radius: 9999px; padding: 0.25rem 0.7rem; font-size: 0.75rem; color: #a1a1aa; font-family: ui-monospace, monospace; z-index: 2; }
+
   @media print {
     .slide { position: relative; opacity: 1 !important; pointer-events: all !important; page-break-after: always; }
     nav, #progress, #slideNum, .view-toggle { display: none !important; }
@@ -461,55 +473,227 @@
     </div>
   </div>
 
-  <!-- ═══ S15 · Q1 SUMMARY — DIRECTIONS ═══ -->
-  <div class="slide flex flex-col items-center justify-center px-20">
-    <div class="slide-label text-center">Итоги квартала</div>
-    <h2 class="text-[2.5rem] font-black tracking-tight leading-[1.05] mb-10 text-center">
-      Q1 по <span class="text-violet-400">направлениям</span>
-    </h2>
-    <div class="grid grid-cols-4 gap-4 w-full max-w-[1500px]">
-      <div class="sh-card" style="border-color:rgba(139,92,246,0.35)">
-        <div class="sh-badge sh-badge-violet mb-3">CRM и Каталоги</div>
-        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
-          <li>→ Каталоги с двунаправленными связями</li>
-          <li>→ Аналитика CRM</li>
-          <li>→ Импорт в каталоги (XLS / CSV)</li>
-          <li>→ Воронка CRM с деталями</li>
-          <li>→ Карусель распределения заявок</li>
-          <li>→ Шаблоны CRM — копирование с полями</li>
-        </ul>
+  <!-- ═══ S15 · Q1 — CRM & CATALOGS ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">Q1 · Направление 1</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        CRM и <span class="text-violet-400">Каталоги</span>
+      </h2>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Каталоги с двунаправленными связями</div>
+        <div class="arrow-item">Аналитика CRM</div>
+        <div class="arrow-item">Импорт в каталоги (XLS / CSV)</div>
+        <div class="arrow-item">Воронка CRM с деталями по колонкам</div>
+        <div class="arrow-item">Карусель распределения заявок</div>
+        <div class="arrow-item">Шаблоны CRM — копирование с полями</div>
       </div>
-      <div class="sh-card" style="border-color:rgba(6,182,212,0.35)">
-        <div class="sh-badge sh-badge-cyan mb-3">UX карточек</div>
-        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
-          <li>→ Новые карточки — обновлённый фасад</li>
-          <li>→ Дровер — боковая панель справа</li>
-          <li>→ Единое меню на фасаде и внутри</li>
-          <li>→ Сервис Деск — автозаполнение полей</li>
-        </ul>
-      </div>
-      <div class="sh-card" style="border-color:rgba(59,130,246,0.35)">
-        <div class="sh-badge sh-badge-blue mb-3">Интеграции</div>
-        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
-          <li>→ Бот в мессенджере MAX</li>
-          <li>→ Телефония Sipuni — для всех, степпер</li>
-        </ul>
-      </div>
-      <div class="sh-card" style="border-color:rgba(245,158,11,0.35)">
-        <div class="sh-badge sh-badge-amber mb-3">Платформа и процессы</div>
-        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
-          <li>→ Партнёрский кабинет (новый сервис)</li>
-          <li>→ Биллинг — тарифы через интерфейс</li>
-          <li>→ Экспорт на собственный S3</li>
-          <li>→ Бета-функции и фидбэк-циклы</li>
-          <li>→ Форма обратной связи + «Что нового»</li>
-          <li>→ Дизайн-система & Storybook</li>
-        </ul>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border">
+      <div class="img-car">
+        <div class="img-slide active"><img src="assets/images/q1-catalog-list.png" alt="Каталоги"><span class="caption">Каталоги</span></div>
+        <div class="img-slide"><img src="assets/images/crm-funnel.png" alt="Воронка CRM"><span class="caption">Воронка CRM</span></div>
+        <div class="img-slide"><img src="assets/images/catalog-import.png" alt="Импорт в каталоги"><span class="caption">Импорт в каталоги</span></div>
+        <div class="img-slide"><img src="assets/images/round-robin.png" alt="Карусель заявок"><span class="caption">Карусель заявок</span></div>
+        <button class="car-btn car-prev" aria-label="prev">←</button>
+        <button class="car-btn car-next" aria-label="next">→</button>
+        <div class="car-counter"></div>
       </div>
     </div>
   </div>
 
-  <!-- ═══ S16 · THANK YOU ═══ -->
+  <!-- ═══ S16 · Q1 — UX CARDS ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">Q1 · Направление 2</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        UX <span class="text-violet-400">карточек</span>
+      </h2>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Новые карточки — обновлённый фасад</div>
+        <div class="arrow-item">Дровер — боковая панель справа</div>
+        <div class="arrow-item">Единое меню на фасаде и внутри</div>
+        <div class="arrow-item">Сервис Деск — автозаполнение полей</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border">
+      <div class="img-car">
+        <div class="img-slide active"><img src="assets/images/q1-new-card.png" alt="Новые карточки"><span class="caption">Новые карточки</span></div>
+        <div class="img-slide"><img src="assets/images/drawer-right.png" alt="Дровер"><span class="caption">Дровер</span></div>
+        <div class="img-slide"><img src="assets/images/unified-menu.png" alt="Единое меню"><span class="caption">Единое меню карточки</span></div>
+        <div class="img-slide"><img src="assets/images/q1-sd.png" alt="Сервис Деск"><span class="caption">Сервис Деск — автозаполнение</span></div>
+        <button class="car-btn car-prev" aria-label="prev">←</button>
+        <button class="car-btn car-next" aria-label="next">→</button>
+        <div class="car-counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S17 · Q1 — INTEGRATIONS ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">Q1 · Направление 3</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        <span class="text-violet-400">Интеграции</span>
+      </h2>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Бот в мессенджере MAX — уведомления из Kaiten</div>
+        <div class="arrow-item">Телефония Sipuni — для всех, настройка в степпере</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border">
+      <div class="img-car">
+        <div class="img-slide active"><img src="assets/images/max-integration.png" alt="Интеграция с MAX"><span class="caption">Бот в MAX</span></div>
+        <div class="img-slide"><img src="assets/images/sipuni-setup.png" alt="Sipuni"><span class="caption">Телефония Sipuni</span></div>
+        <button class="car-btn car-prev" aria-label="prev">←</button>
+        <button class="car-btn car-next" aria-label="next">→</button>
+        <div class="car-counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S18 · Q1 — PLATFORM & PROCESS ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">Q1 · Направление 4</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Платформа и <span class="text-violet-400">процессы</span>
+      </h2>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Партнёрский кабинет — новый сервис</div>
+        <div class="arrow-item">Биллинг — тарифы через интерфейс</div>
+        <div class="arrow-item">Экспорт на собственный S3</div>
+        <div class="arrow-item">Бета-функции и фидбэк-циклы</div>
+        <div class="arrow-item">Форма обратной связи + «Что нового»</div>
+        <div class="arrow-item">Дизайн-система & Storybook</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border">
+      <div class="img-car">
+        <div class="img-slide active"><img src="assets/images/partner-cabinet.png" alt="Партнёрский кабинет"><span class="caption">Партнёрский кабинет</span></div>
+        <div class="img-slide"><img src="assets/images/q1-billing.png" alt="Биллинг"><span class="caption">Биллинг — тарифы через интерфейс</span></div>
+        <div class="img-slide"><img src="assets/images/company-export.png" alt="Экспорт на S3"><span class="caption">Экспорт на собственный S3</span></div>
+        <div class="img-slide"><img src="assets/images/q1-beta.png" alt="Бета-функции"><span class="caption">Бета-функции</span></div>
+        <div class="img-slide"><img src="assets/images/q1-feedback.png" alt="Форма обратной связи"><span class="caption">Форма обратной связи</span></div>
+        <div class="img-slide"><img src="assets/images/q1-storybook.png" alt="Дизайн-система / Storybook"><span class="caption">Дизайн-система &amp; Storybook</span></div>
+        <button class="car-btn car-prev" aria-label="prev">←</button>
+        <button class="car-btn car-next" aria-label="next">→</button>
+        <div class="car-counter"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S19 · Q2 HYPOTHESES ═══ -->
+  <div class="slide flex flex-col items-center justify-center px-16">
+    <div class="slide-label text-center">Что впереди</div>
+    <h2 class="text-[2.5rem] font-black tracking-tight leading-[1.05] mb-2 text-center">
+      Q2 2026 · <span class="text-violet-400">12 гипотез</span>
+    </h2>
+    <p class="text-base text-muted-foreground max-w-2xl leading-relaxed mb-10 text-center">
+      Что проверяем в следующем квартале — ставки команды на рост и удержание
+    </p>
+    <div class="grid grid-cols-3 gap-4 w-full max-w-[1400px]">
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г1</span>
+          <div class="font-semibold text-base">Модульная тарифная сетка</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Справедливые тарифы, прозрачная ценность модулей — рост New MRR и expansion</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г8</span>
+          <div class="font-semibold text-base">Коммуникации: чат + ВКС + календарь</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Встроенные «good enough» рядом с задачами — обсуждения в одном контуре</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г7</span>
+          <div class="font-semibold text-base">«Волшебная кнопка аналитики»</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Понятные отчёты и ответы по работе в один клик — для ЛПР</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г11</span>
+          <div class="font-semibold text-base">Модуль стратегии — KPI и цели</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Связка «цель → работа → прогресс» в одном месте, без ручной сводки</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г2</span>
+          <div class="font-semibold text-base">Notion-like UX</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Простота, скорость и «приятно пользоваться» в ключевых сценариях</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г5</span>
+          <div class="font-semibold text-base">Авто-онбординг через шаблоны</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Готовое пространство под use-case сразу при старте — быстрее trial → value</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г6</span>
+          <div class="font-semibold text-base">Персональный дашборд</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Задачи, риски, дедлайны и приоритеты «на сегодня» — начинать день в Kaiten</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г9</span>
+          <div class="font-semibold text-base">Файловое хранилище</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Встроенное хранилище «good enough» с привязкой к задачам и правами</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г4</span>
+          <div class="font-semibold text-base">CLI / MCP / Skills — AI-инструменты</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Подключение внешних источников и ИИ-действий — для технических покупателей</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г12</span>
+          <div class="font-semibold text-base">Права и оргструктура</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Понятные доступы через оргструктуру и группы — основа для BPM и enterprise</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г3</span>
+          <div class="font-semibold text-base">Gantt / Timeline — Critical Path</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Полноценные зависимости и критический путь в классическом PM</div>
+      </div>
+
+      <div class="sh-card">
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="text-sm font-black text-violet-300 px-2 py-0.5 rounded bg-violet-500/10 border border-violet-500/30">Г10</span>
+          <div class="font-semibold text-base">CRM 80/20 — защита от Bitrix</div>
+        </div>
+        <div class="text-sm text-muted-foreground leading-relaxed">Базовые CRM-сценарии встроенным модулем — снизить churn в SMB</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ S20 · THANK YOU ═══ -->
   <div class="slide flex flex-col items-center justify-center text-center px-24">
     <h2 class="gradient-text text-[4.5rem] font-black tracking-tighter leading-[0.95] mb-7">
       Спасибо!
@@ -573,6 +757,20 @@
 
   progressEl.style.width = (1 / total * 100) + '%';
   slideNumEl.textContent = '1 / ' + total;
+
+  // Image carousels inside slides
+  document.querySelectorAll('.img-car').forEach(car => {
+    const imgs = car.querySelectorAll('.img-slide');
+    const counter = car.querySelector('.car-counter');
+    let idx = 0;
+    const render = () => {
+      imgs.forEach((s, i) => s.classList.toggle('active', i === idx));
+      if (counter) counter.textContent = (idx + 1) + ' / ' + imgs.length;
+    };
+    car.querySelector('.car-prev').addEventListener('click', (e) => { e.stopPropagation(); idx = (idx - 1 + imgs.length) % imgs.length; render(); });
+    car.querySelector('.car-next').addEventListener('click', (e) => { e.stopPropagation(); idx = (idx + 1) % imgs.length; render(); });
+    render();
+  });
 </script>
 </body>
 </html>
