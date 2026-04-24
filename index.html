@@ -107,7 +107,7 @@
   <div class="slide flex flex-col items-center justify-center px-24">
     <div class="slide-label">Обзор</div>
     <h2 class="text-4xl font-bold tracking-tight mb-10">Что покажем</h2>
-    <div class="grid grid-cols-4 gap-4 w-full max-w-7xl">
+    <div class="grid grid-cols-5 gap-4 w-full max-w-7xl">
       <div class="sh-card flex gap-4">
         <span class="text-2xl font-black text-violet-400 leading-none shrink-0">01</span>
         <div><div class="font-semibold text-base mb-1">Дровер</div><div class="text-base text-muted-foreground leading-relaxed">Карточка открывается справа без потери контекста доски</div></div>
@@ -143,6 +143,10 @@
       <div class="sh-card flex gap-4">
         <span class="text-2xl font-black text-violet-400 leading-none shrink-0">09</span>
         <div><div class="font-semibold text-base mb-1">Экспорт компании</div><div class="text-base text-muted-foreground leading-relaxed">Выгрузка данных на собственный S3 вместо Яндекс Диска</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">10</span>
+        <div><div class="font-semibold text-base mb-1">Партнёрский кабинет</div><div class="text-base text-muted-foreground leading-relaxed">Новый сервис для партнёров — лиды, клиенты, админка</div></div>
       </div>
     </div>
   </div>
@@ -387,7 +391,34 @@
     </div>
   </div>
 
-  <!-- ═══ S12 · STATS ═══ -->
+  <!-- ═══ S12 · PARTNER CABINET (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">10 · Партнёрский кабинет</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Новый сервис —<br><span class="text-violet-400">Партнёрский кабинет</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Спроектировали и запустили новый сервис, интегрированный с Kaiten и биллингом. Партнёры управляют своими лидами и клиентами, у администраторов — отдельный функционал.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Интеграция с Kaiten и биллингом</div>
+        <div class="arrow-item">Партнёры ведут своих лидов и клиентов</div>
+        <div class="arrow-item">Отдельный функционал для администраторов</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-violet mb-2">Роль команды</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Мы выступали скорее <span class="text-violet-300 font-semibold">как команда на аутсорсе</span> — выделили разработчика, основную работу вёл Володя Квятковский.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/partner-cabinet.png" alt="Партнёрский кабинет" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S13 · STATS ═══ -->
   <div class="slide flex flex-col items-center justify-center px-24">
     <div class="slide-label text-center">Результаты</div>
     <h2 class="text-[2.75rem] font-black tracking-tight leading-tight mb-12 text-center">
@@ -395,14 +426,95 @@
     </h2>
     <div class="flex justify-center w-full max-w-5xl">
       <div class="sh-card text-center px-16 py-10">
-        <div class="text-6xl font-black text-violet-400 mb-2">9</div>
+        <div class="text-6xl font-black text-violet-400 mb-2">10</div>
         <div class="text-lg font-semibold mb-1">Крупных фич</div>
         <div class="text-base text-muted-foreground">Полный цикл разработки</div>
       </div>
     </div>
   </div>
 
-  <!-- ═══ S12 · THANK YOU ═══ -->
+  <!-- ═══ S14 · Q1 SUMMARY — NUMBERS ═══ -->
+  <div class="slide flex flex-col items-center justify-center px-24">
+    <div class="slide-label text-center">Итоги квартала</div>
+    <h2 class="gradient-text text-[3.25rem] font-black tracking-tighter leading-[1] mb-4 text-center">
+      Q1 2026 в цифрах
+    </h2>
+    <p class="text-base text-muted-foreground max-w-2xl leading-relaxed mb-10 text-center">
+      Январь → Март → Апрель. Три месяца работы B // Product.
+    </p>
+    <div class="grid grid-cols-4 gap-4 w-full max-w-6xl">
+      <div class="sh-card text-center">
+        <div class="text-5xl font-black text-violet-400 mb-1">3</div>
+        <div class="text-base font-semibold mb-1">месяца</div>
+        <div class="text-sm text-muted-foreground">Январь · Март · Апрель</div>
+      </div>
+      <div class="sh-card text-center">
+        <div class="text-5xl font-black text-violet-400 mb-1">23</div>
+        <div class="text-base font-semibold mb-1">крупных фичи</div>
+        <div class="text-sm text-muted-foreground">Полный цикл разработки</div>
+      </div>
+      <div class="sh-card text-center">
+        <div class="text-5xl font-black text-emerald-400 mb-1">1</div>
+        <div class="text-base font-semibold mb-1">новый сервис</div>
+        <div class="text-sm text-muted-foreground">Партнёрский кабинет</div>
+      </div>
+      <div class="sh-card text-center">
+        <div class="text-5xl font-black text-emerald-400 mb-1">4</div>
+        <div class="text-base font-semibold mb-1">направления</div>
+        <div class="text-sm text-muted-foreground">CRM · UX · Интеграции · Платформа</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S15 · Q1 SUMMARY — DIRECTIONS ═══ -->
+  <div class="slide flex flex-col items-center justify-center px-20">
+    <div class="slide-label text-center">Итоги квартала</div>
+    <h2 class="text-[2.5rem] font-black tracking-tight leading-[1.05] mb-10 text-center">
+      Q1 по <span class="text-violet-400">направлениям</span>
+    </h2>
+    <div class="grid grid-cols-4 gap-4 w-full max-w-[1500px]">
+      <div class="sh-card" style="border-color:rgba(139,92,246,0.35)">
+        <div class="sh-badge sh-badge-violet mb-3">CRM и Каталоги</div>
+        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
+          <li>→ Каталоги с двунаправленными связями</li>
+          <li>→ Аналитика CRM</li>
+          <li>→ Импорт в каталоги (XLS / CSV)</li>
+          <li>→ Воронка CRM с деталями</li>
+          <li>→ Карусель распределения заявок</li>
+          <li>→ Шаблоны CRM — копирование с полями</li>
+        </ul>
+      </div>
+      <div class="sh-card" style="border-color:rgba(6,182,212,0.35)">
+        <div class="sh-badge sh-badge-cyan mb-3">UX карточек</div>
+        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
+          <li>→ Новые карточки — обновлённый фасад</li>
+          <li>→ Дровер — боковая панель справа</li>
+          <li>→ Единое меню на фасаде и внутри</li>
+          <li>→ Сервис Деск — автозаполнение полей</li>
+        </ul>
+      </div>
+      <div class="sh-card" style="border-color:rgba(59,130,246,0.35)">
+        <div class="sh-badge sh-badge-blue mb-3">Интеграции</div>
+        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
+          <li>→ Бот в мессенджере MAX</li>
+          <li>→ Телефония Sipuni — для всех, степпер</li>
+        </ul>
+      </div>
+      <div class="sh-card" style="border-color:rgba(245,158,11,0.35)">
+        <div class="sh-badge sh-badge-amber mb-3">Платформа и процессы</div>
+        <ul class="space-y-1.5 text-sm text-zinc-300 leading-snug">
+          <li>→ Партнёрский кабинет (новый сервис)</li>
+          <li>→ Биллинг — тарифы через интерфейс</li>
+          <li>→ Экспорт на собственный S3</li>
+          <li>→ Бета-функции и фидбэк-циклы</li>
+          <li>→ Форма обратной связи + «Что нового»</li>
+          <li>→ Дизайн-система & Storybook</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S16 · THANK YOU ═══ -->
   <div class="slide flex flex-col items-center justify-center text-center px-24">
     <h2 class="gradient-text text-[4.5rem] font-black tracking-tighter leading-[0.95] mb-7">
       Спасибо!
