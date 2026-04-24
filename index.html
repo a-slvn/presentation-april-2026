@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Итоги B // Product — Апрель 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        colors: {
+          border:    'hsl(var(--border))',
+          background:'hsl(var(--background))',
+          foreground:'hsl(var(--foreground))',
+          card:      { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
+          muted:     { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+          primary:   { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+        },
+        borderRadius: { lg: 'var(--radius)', md: 'calc(var(--radius) - 2px)' },
+      },
+    },
+  }
+</script>
+<style>
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground:  0 0% 98%;
+    --card:        240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --border:      240 6% 14%;
+    --muted:       240 6% 14%;
+    --muted-foreground: 240 5% 55%;
+    --primary:     263 70% 58%;
+    --primary-foreground: 0 0% 98%;
+    --radius: 0.75rem;
+  }
+  * { box-sizing: border-box; }
+  body { overflow: hidden; }
+
+  .slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 40%, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sh-card { border-radius: var(--radius); border: 1px solid hsl(var(--border)); background: hsl(var(--card)); padding: 1.5rem 1.75rem; }
+  .sh-badge { display: inline-flex; align-items: center; border-radius: 9999px; padding: 0.3rem 0.85rem; font-size: 1rem; font-weight: 600; letter-spacing: 0.03em; }
+  .sh-badge-violet { border: 1px solid rgba(139,92,246,0.4); background: rgba(139,92,246,0.12); color: #c4b5fd; }
+  .sh-badge-emerald { border: 1px solid rgba(16,185,129,0.4); background: rgba(16,185,129,0.1); color: #6ee7b7; }
+  .sh-badge-amber { border: 1px solid rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); color: #fcd34d; }
+  .sh-badge-blue { border: 1px solid rgba(59,130,246,0.4); background: rgba(59,130,246,0.1); color: #93c5fd; }
+  .sh-badge-cyan { border: 1px solid rgba(6,182,212,0.4); background: rgba(6,182,212,0.1); color: #67e8f9; }
+
+  .slide-label { font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #a78bfa; margin-bottom: 0.75rem; }
+
+  .arrow-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .arrow-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 1.125rem; color: #d4d4d8; line-height: 1.5; }
+  .arrow-item::before { content: '→'; color: #34d399; font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+
+  .result-card { border-radius: var(--radius); border: 1px solid rgba(16,185,129,0.25); background: rgba(16,185,129,0.06); padding: 1rem 1.25rem; }
+  .sep { height: 1px; background: hsl(var(--border)); width: 100%; }
+
+  /* Extended content */
+  .ext { margin-top: 1.25rem; }
+  .ext-text { font-size: 1rem; color: hsl(var(--muted-foreground)); line-height: 1.7; }
+
+
+  @media print {
+    .slide { position: relative; opacity: 1 !important; pointer-events: all !important; page-break-after: always; }
+    nav, #progress, #slideNum, .view-toggle { display: none !important; }
+  }
+</style>
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+
+<!-- Progress bar -->
+<div id="progress" class="fixed top-0 left-0 h-[2px] bg-violet-500 z-50 transition-[width] duration-500 ease-out"></div>
+<div id="slideNum" class="fixed top-5 right-8 text-xs text-muted-foreground z-50 font-mono tabular-nums"></div>
+
+
+<div id="deck" class="relative w-screen h-screen">
+
+  <!-- ═══ S1 · TITLE ═══ -->
+  <div class="slide active flex flex-col items-center justify-center text-center px-24">
+    <div class="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground mb-10">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      Kaiten · Апрель 2026
+    </div>
+    <h1 class="gradient-text text-[5.5rem] font-black tracking-tighter leading-[0.95] mb-7">
+      Итоги<br>B // Product
+    </h1>
+    <p class="text-xl text-muted-foreground max-w-xl leading-relaxed">
+      Обзор реализованных фич и закрытых задач<br>за период 20.03 — 20.04.2026
+    </p>
+  </div>
+
+  <!-- ═══ S2 · OVERVIEW ═══ -->
+  <div class="slide flex flex-col items-center justify-center px-24">
+    <div class="slide-label">Обзор</div>
+    <h2 class="text-4xl font-bold tracking-tight mb-10">Что покажем</h2>
+    <div class="grid grid-cols-4 gap-4 w-full max-w-7xl">
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">01</span>
+        <div><div class="font-semibold text-base mb-1">Дровер</div><div class="text-base text-muted-foreground leading-relaxed">Карточка открывается справа без потери контекста доски</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">02</span>
+        <div><div class="font-semibold text-base mb-1">Импорт в каталоги</div><div class="text-base text-muted-foreground leading-relaxed">Загрузка данных через XLS / CSV</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">03</span>
+        <div><div class="font-semibold text-base mb-1">Воронка CRM</div><div class="text-base text-muted-foreground leading-relaxed">График с деталями по колонкам и ответственным</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">04</span>
+        <div><div class="font-semibold text-base mb-1">Интеграция с MAX</div><div class="text-base text-muted-foreground leading-relaxed">Новый мессенджер в списке интеграций</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">05</span>
+        <div><div class="font-semibold text-base mb-1">Карусель заявок</div><div class="text-base text-muted-foreground leading-relaxed">Равномерное распределение между сотрудниками</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">06</span>
+        <div><div class="font-semibold text-base mb-1">Единое меню карточки</div><div class="text-base text-muted-foreground leading-relaxed">Одинаковые пункты на фасаде и внутри</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">07</span>
+        <div><div class="font-semibold text-base mb-1">Телефония Sipuni</div><div class="text-base text-muted-foreground leading-relaxed">Доступна всем, мастер-настройка в степпере</div></div>
+      </div>
+      <div class="sh-card flex gap-4">
+        <span class="text-2xl font-black text-violet-400 leading-none shrink-0">08</span>
+        <div><div class="font-semibold text-base mb-1">Шаблоны CRM</div><div class="text-base text-muted-foreground leading-relaxed">Импорт публичных сущностей с полями и значениями</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S3 · DRAWER (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">01 · Дровер</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Карточка открывается<br>в <span class="text-violet-400">дровере справа</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Раньше карточка открывалась в модальном окне и закрывала всю доску. Теперь она открывается в боковой панели справа — можно продолжать работать с доской одновременно с карточкой.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Одновременная работа с доской и карточкой</div>
+        <div class="arrow-item">Не теряется контекст пространства</div>
+        <div class="arrow-item">Много раз запрашиваемая пользователями фича</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Результат</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Долгожданная фича — пользователи <span class="text-emerald-400 font-semibold">не теряют контекст доски</span> при работе с карточкой.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/drawer-right.png" alt="Дровер справа" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S4 · CATALOG IMPORT (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">02 · Импорт в каталоги</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Импорт данных<br>через <span class="text-violet-400">XLS и CSV</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        После релиза каталогов пользователи попросили возможность загружать свои данные массово. Мы оперативно сделали импорт из XLS и CSV.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Загрузка записей из Excel-таблиц</div>
+        <div class="arrow-item">Импорт из CSV</div>
+        <div class="arrow-item">Быстрый старт работы с каталогами — без ручного ввода</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Что даёт</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Пользователи переносят <span class="text-emerald-400 font-semibold">существующие базы</span> в Kaiten за минуты, а не за часы ручного ввода.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/catalog-import.png" alt="Импорт в каталоги" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S5 · CRM FUNNEL (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">03 · Воронка CRM</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Воронка с <span class="text-violet-400">детализацией</span><br>по колонкам
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Фича достаточно старая, много раз переделывалась. Теперь всё работает стабильно, зарелижено и дополнено новой информацией.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Открываете любую колонку воронки — видите карточки на ней</div>
+        <div class="arrow-item">Ответственные за каждую сделку видны прямо в графике</div>
+        <div class="arrow-item">Подробное описание в базе знаний — как работает и как читать</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Результат</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Воронка показывает <span class="text-emerald-400 font-semibold">не только числа, но и людей</span> за каждой сделкой.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/crm-funnel.png" alt="Воронка CRM" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S6 · MAX INTEGRATION (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">04 · Интеграция с MAX</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Интеграция с мессенджером<br><span class="text-violet-400">MAX</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Из-за блокировок некоторых мессенджеров пользователи активно просили интеграцию с MAX. Мы её сделали — со своими инфраструктурными сложностями, но в целом готово к релизу на всех.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Бот в MAX — уведомления о событиях в Kaiten прямо в мессенджер</div>
+        <div class="arrow-item">Альтернатива Telegram-боту для команд, у которых заблокированы другие мессенджеры</div>
+        <div class="arrow-item">На этой неделе раскатываем на всех пользователей</div>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/max-integration.png" alt="Интеграция с MAX" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S7 · ROUND ROBIN (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">05 · Карусель заявок</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Автоматическое распределение<br>заявок <span class="text-violet-400">между сотрудниками</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Ещё одна доработка для CRM. Входящие заявки теперь автоматически и равномерно распределяются между сотрудниками — по принципу карусели.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Каждая новая заявка уходит следующему по очереди сотруднику</div>
+        <div class="arrow-item">Нагрузка распределяется равномерно</div>
+        <div class="arrow-item">Никто не забирает все сделки, никто не остаётся без заявок</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Что даёт</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Справедливое распределение — <span class="text-emerald-400 font-semibold">без ручной сортировки руководителем</span>.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/round-robin.png" alt="Карусель распределения заявок" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S8 · UNIFIED MENU (split, two images) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">06 · Единое меню карточки</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Одинаковое меню<br>на <span class="text-violet-400">фасаде и внутри</span> карточки
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Раньше контекстные меню на фасаде и внутри карточки различались и по структуре, и по UI, и по паттернам, иконкам и пунктам. Мы всё причесали.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Единый внешний вид меню — одинаковые иконки и тексты</div>
+        <div class="arrow-item">Общие пункты есть и там, и там</div>
+        <div class="arrow-item">Добавили дополнительные пункты, уместные в каждом контексте</div>
+        <div class="arrow-item">Переработали механики и UI-паттерны</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Результат</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Пользователь видит <span class="text-emerald-400 font-semibold">одинаковые действия в одинаковых местах</span> — меньше когнитивной нагрузки.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/unified-menu.png" alt="Единое меню карточки" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S9 · SIPUNI (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">07 · Телефония Sipuni</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Sipuni — <span class="text-violet-400">всем пользователям</span>,<br>настройка через степпер
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Интеграция с телефонией Sipuni теперь доступна всем пользователям. Мы переработали модальное окно настройки — сделали его пошаговым.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Раскатано на всех пользователей</div>
+        <div class="arrow-item">Настройка по шагам — степпер вместо длинной формы</div>
+        <div class="arrow-item">Настроить интеграцию стало удобнее и быстрее</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Результат</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          Сложная настройка превратилась в <span class="text-emerald-400 font-semibold">простой пошаговый мастер</span>.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/sipuni-setup.png" alt="Настройка Sipuni — степпер" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S10 · PUBLIC ENTITY IMPORT (split) ═══ -->
+  <div class="slide flex flex-row">
+    <div class="w-[38%] shrink-0 flex flex-col justify-center px-14 py-14">
+      <div class="slide-label">08 · Шаблоны CRM</div>
+      <h2 class="text-[2rem] font-bold tracking-tight leading-snug mb-6">
+        Импорт публичных сущностей<br>с <span class="text-violet-400">пользовательскими полями</span>
+      </h2>
+      <p class="text-base text-zinc-400 leading-relaxed mb-6">
+        Доработка к CRM. Теперь публичные сущности можно копировать вместе с кастомными полями и их значениями. Это даёт главный бонус — мы можем публиковать готовый шаблон CRM.
+      </p>
+      <div class="arrow-list mb-6">
+        <div class="arrow-item">Копируем сущность — копируются и поля, и значения</div>
+        <div class="arrow-item">Можно опубликовать публичный шаблон CRM</div>
+        <div class="arrow-item">Пользователь нажимает Ctrl+C / Ctrl+V — и у него готовая CRM</div>
+        <div class="arrow-item">С настроенными каталогами, полями компаний, клиентов и других сущностей</div>
+      </div>
+      <div class="result-card">
+        <div class="sh-badge sh-badge-emerald mb-2">Результат</div>
+        <p class="text-base text-zinc-300 leading-relaxed mt-2">
+          <span class="text-emerald-400 font-semibold">Две кнопки</span> — и у пользователя полностью рабочая CRM. Можно сразу пользоваться.
+        </p>
+      </div>
+    </div>
+    <div class="flex-1 overflow-hidden border-l border-border flex items-center justify-center" style="background:hsl(var(--card))">
+      <img src="assets/images/public-entity-copy.png" alt="Импорт публичной сущности с полями" class="w-full h-full object-contain">
+    </div>
+  </div>
+
+  <!-- ═══ S11 · STATS ═══ -->
+  <div class="slide flex flex-col items-center justify-center px-24">
+    <div class="slide-label text-center">Результаты</div>
+    <h2 class="text-[2.75rem] font-black tracking-tight leading-tight mb-12 text-center">
+      Результаты периода
+    </h2>
+    <div class="flex justify-center w-full max-w-5xl">
+      <div class="sh-card text-center px-16 py-10">
+        <div class="text-6xl font-black text-violet-400 mb-2">8</div>
+        <div class="text-lg font-semibold mb-1">Крупных фич</div>
+        <div class="text-base text-muted-foreground">Полный цикл разработки</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S12 · THANK YOU ═══ -->
+  <div class="slide flex flex-col items-center justify-center text-center px-24">
+    <h2 class="gradient-text text-[4.5rem] font-black tracking-tighter leading-[0.95] mb-7">
+      Спасибо!
+    </h2>
+    <p class="text-xl text-muted-foreground max-w-md leading-relaxed mb-6">
+      Вместе создаём лучший продукт.
+    </p>
+    <div class="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 text-xs text-muted-foreground">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      Готовы ответить на вопросы
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<nav class="fixed bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 z-50">
+  <button id="prevBtn" class="w-8 h-8 rounded-full border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground transition-all flex items-center justify-center text-sm">←</button>
+  <div class="flex gap-1.5" id="dots"></div>
+  <button id="nextBtn" class="w-8 h-8 rounded-full border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground transition-all flex items-center justify-center text-sm">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  const dotsEl = document.getElementById('dots');
+  const progressEl = document.getElementById('progress');
+  const slideNumEl = document.getElementById('slideNum');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.style.cssText = `width:6px;height:6px;border-radius:9999px;cursor:pointer;transition:all 0.2s;background:${i===0?'#7c3aed':'rgba(255,255,255,0.15)'};transform:${i===0?'scale(1.3)':'scale(1)'}`;
+    d.addEventListener('click', () => go(i));
+    dotsEl.appendChild(d);
+  });
+
+  function go(n) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].style.background = 'rgba(255,255,255,0.15)';
+    dotsEl.children[current].style.transform = 'scale(1)';
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    dotsEl.children[current].style.background = '#7c3aed';
+    dotsEl.children[current].style.transform = 'scale(1.3)';
+    progressEl.style.width = ((current + 1) / total * 100) + '%';
+    slideNumEl.textContent = (current + 1) + ' / ' + total;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => go(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => go(current + 1));
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); go(current + 1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key)) { e.preventDefault(); go(current - 1); }
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) { d > 0 ? go(current+1) : go(current-1); } });
+
+  progressEl.style.width = (1 / total * 100) + '%';
+  slideNumEl.textContent = '1 / ' + total;
+</script>
+</body>
+</html>
